@@ -1,0 +1,32 @@
+unit dmConexao;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Stan.Param,
+  FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Phys.PGDef,
+  FireDAC.Phys.PG, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  Data.FMTBcd, Data.SqlExpr, Datasnap.Provider, Datasnap.DBClient, DBAccess, Uni,
+  MemDS;
+
+type
+  TDataModule1 = class(TDataModule)
+    UniConnection1: TUniConnection;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DataModule1: TDataModule1;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

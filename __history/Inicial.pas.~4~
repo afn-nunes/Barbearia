@@ -1,0 +1,49 @@
+unit Inicial;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.Buttons,
+  Vcl.Imaging.jpeg, Vcl.ImgList, Vcl.StdCtrls;
+
+type
+  TfrmPrincipal = class(TForm)
+    Panel1: TPanel;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
+    TabSheet3: TTabSheet;
+    Panel2: TPanel;
+    SpeedButton5: TSpeedButton;
+    SpeedButton6: TSpeedButton;
+    Image1: TImage;
+    Button1: TButton;
+    ImageList1: TImageList;
+    Button2: TButton;
+    Button3: TButton;
+    procedure Button1Click(Sender: TObject);
+    procedure abrirForm(nomeDoForm: Tform);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPrincipal: TfrmPrincipal;
+
+implementation
+
+{$R *.dfm}
+Uses
+ CadastroDeClientes;
+
+procedure TfrmPrincipal.Button1Click(Sender: TObject);
+begin
+  frmCadastroPessoa:= TfrmCadastroPessoa.Create(self);
+  frmCadastroPessoa.ShowModal();
+end;
+
+
+end.

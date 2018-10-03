@@ -1,0 +1,37 @@
+object dmConexao: TdmConexao
+  OldCreateOrder = False
+  Height = 280
+  Width = 459
+  object conexao: TUniConnection
+    ProviderName = 'PostgreSQL'
+    Port = 5432
+    Database = 'postgres'
+    Username = 'postgres'
+    Server = 'localhost'
+    Connected = True
+    LoginPrompt = False
+    Left = 40
+    Top = 24
+    EncryptedPassword = 'CEFFCDFFCCFFCBFFCAFFC9FF'
+  end
+  object PostgreSQLUniProvider1: TPostgreSQLUniProvider
+    Left = 360
+    Top = 24
+  end
+  object cdsPessoa: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    Left = 160
+    Top = 88
+  end
+  object dspPessoa: TDataSetProvider
+    DataSet = cdsPessoa
+    Left = 104
+    Top = 88
+  end
+  object qryPessoa: TUniQuery
+    Connection = conexao
+    Left = 40
+    Top = 88
+  end
+end

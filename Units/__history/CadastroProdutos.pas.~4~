@@ -1,0 +1,74 @@
+unit CadastroProdutos;
+
+interface
+type
+  TProduto = class
+    private
+      fTpProduto: string;
+      fDescricao: string;
+      fObservacao: string;
+      fVlCusto: Double;
+    protected
+      function getTpProduto: string;
+      procedure setTpProduto(const Value: string);
+      function getDescricao: string;
+      procedure setDescricao(const Value: string);
+      function getObservacao: string;
+      procedure setObservacao(const Value: string);
+      function getvlCusto: Double;
+      procedure setVlCusto(const Value: Double);
+    public
+      property tpProduto:string read getTpProduto write setTpProduto;
+      property descricao:string read getDescricao write setDescricao;
+      property observacaoo:string read getObservacao write setObservacao;
+      property vlCusto: Double read getvlCusto write setVlCusto;
+
+      //valorVenda
+      //Fornecedor
+      //Caracteristica
+  end;
+implementation
+
+{ TProduto }
+
+function TProduto.getDescricao: string;
+begin
+  result:= fDescricao;
+end;
+
+function TProduto.getObservacao: string;
+begin
+  result:= fObservacao;
+end;
+
+function TProduto.getTpProduto: string;
+begin
+   result:= ftpProduto;
+end;
+
+function TProduto.getvlCusto: Double;
+begin
+   result:= fVlCusto;
+end;
+
+procedure TProduto.setDescricao(const Value: string);
+begin
+  fDescricao:= Value;
+end;
+
+procedure TProduto.setObservacao(const Value: string);
+begin
+  fObservacao:= Value;
+end;
+
+procedure TProduto.setTpProduto(const Value: string);
+begin
+   fTpProduto:= value;
+end;
+
+procedure TProduto.setVlCusto(const Value: Double);
+begin
+  fVlCusto:= Value;
+end;
+
+end.

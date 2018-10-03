@@ -1,0 +1,268 @@
+unit ConfigurarIni;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, StdCtrls, jpeg,registry,IniFiles, Buttons,FileCtrl;
+
+type
+  TfrmConfigurarINI = class(TForm)
+    img1: TImage;
+    edtServidor: TEdit;
+    edtBase: TEdit;
+    lbl1: TLabel;
+    lbl2: TLabel;
+    lbl3: TLabel;
+    btnConfigurar: TButton;
+    edtConexao: TEdit;
+    btnFechar: TSpeedButton;
+    cbSecoes: TComboBox;
+    btnEditar: TButton;
+    OpenDialog: TOpenDialog;
+    btn1: TSpeedButton;
+    procedure btnConfigurarClick(Sender: TObject);
+    procedure btnFecharClick(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure cbSecoesChange(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
+    procedure img1MouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Integer);
+    procedure btn1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    servidor,base,conexao: string;
+    procedure cadastrar();
+    procedure criarRegistro();
+    function lerRegistro:string;
+    procedure carregar();
+    function corrigeCaracter(Diretorio:string):string;
+    function jaexiste(nome:string;list: Tstringlist): Boolean;
+    { Public declarations }
+  end;
+
+var
+  frmConfigurarINI: TfrmConfigurarINI;
+
+implementation
+
+uses SelecaoDiretorio;
+
+{$R *.dfm}
+procedure tfrmConfigurarINI.carregar();
+  var
+    arquivoini: TIniFile;
+    lista: TStringList;
+  begin
+    cbSecoes.Clear;
+    try
+      Arquivoini:= TIniFile.Create(lerRegistro()+'erp.ini');
+      lista:= TStringList.Create;
+      Arquivoini.ReadSections(lista);
+      cbSecoes.Items:= Lista;
+    finally
+      Arquivoini.Free;
+      Lista.Free;
+    end;
+  end;
+function TfrmConfigurarINI.corrigeCaracter(Diretorio:string):string;
+    begin
+            result:= diretorio;
+            if Copy(result,length(result),1) <> '\' then
+                    result:= Diretorio + '\';
+    end;
+
+function TfrmConfigurarINI.jaexiste(nome:string;list: Tstringlist): Boolean;
+    var
+      i,cont: Integer;
+      arquivo: TIniFile;
+    begin
+       try
+         list:= TStringList.Create;
+         arquivo:= TIniFile.Create(lerRegistro()+'erp.ini');
+         arquivo.ReadSections(list);
+         result:= False;
+         cont:= list.Count - 1;
+         for i:= 0 TO cont do
+           begin
+              result:= pos(nome,list.Strings[i])>0;
+              if Result = True then
+                Exit;
+           end;
+       finally
+         arquivo.Free;
+         list.Free;
+       end;
+    end;
+
+procedure TfrmConfigurarINI.criarRegistro;
+    var
+      Reg: TRegistry;
+    begin
+      try
+        Reg := TRegistry.Create;
+        Reg.rootkey:=HKEY_CURRENT_USER;
+        reg.OpenKey('Software\Alterdata\ERP',true);
+        if DirectoryExists('C:\Alterdat\db\ERP\') then
+          Reg.WriteString('DiretorioERP', 'C:\Alterdat\db\ERP\')
+        else
+          Reg.WriteString('DiretorioERP', 'C:\');
+
+      finally
+          reg.free;
+      end;
+    end;
+procedure TfrmConfigurarINI.cadastrar();
+    var
+      diretorio:string;
+      Arquivoini: Tinifile;
+      Lista:TStringList;
+    begin
+      if edtConexao.Text = '' then
+        begin
+          ShowMessage('Informe o nome da conexão');
+          edtConexao.SetFocus;
+          Abort;
+        end;
+
+      if edtServidor.Text = '' then
+        begin
+          ShowMessage('Informe o nome do Servidor');
+          edtServidor.SetFocus;
+          Abort;
+        end;
+
+      if edtBase.Text = '' then
+        begin
+          ShowMessage('Informe o nome da Base');
+          edtBase.SetFocus;
+          Abort;
+        end;
+      conexao:= edtconexao.text;
+      servidor:= edtservidor.text;
+      base:= edtbase.text;
+        try
+          diretorio:= lerRegistro()+'erp.ini';
+          arquivoini:= TIniFile.Create(diretorio);
+          lista:= tstringlist.create;
+          if jaexiste(conexao,lista) then
+              if Application.MessageBox('Essa conexão já existe. Deseja substituir?','Informação',MB_YESNO) = id_yes then
+                begin
+                  Arquivoini.EraseSection(conexao);
+                end
+              else
+                begin
+                  Application.MessageBox('Não foi feita nenhuma alteração','Aviso',MB_OK);
+                  exit;
+                end;
+          Arquivoini.WriteString(conexao,'Server Name',servidor);
+          Arquivoini.WriteString(conexao,'Database Name',base);
+          Arquivoini.WriteString(conexao, '----------','----------');
+
+          Application.MessageBox('Configurações salvas com sucesso','Informação',mb_ok+MB_ICONEXCLAMATION);
+
+          edtServidor.Clear;
+          edtBase.Clear;
+          edtConexao.Clear;
+        except on E: Exception  do
+          raise Exception.Create('Falha na criação do arquivo ERP.ini Verifique as permissões de acesso ao diretório ou se o mesmo existe');
+        end;
+        Arquivoini.Free;
+        Lista.Free;
+    end;
+
+function TfrmConfigurarINI.lerRegistro:string;
+    Var
+      Reg : TRegistry;
+      key: string;
+      diretorioPadrao: string;
+    Begin
+      key:= 'Software\Alterdata\ERP';
+      diretorioPadrao:= 'C:\Alterdat\db\ERP\';
+      Reg := TRegistry.Create;
+      Reg.rootkey:=HKEY_CURRENT_USER;
+      try
+        if Reg.KeyExists(key) then
+          begin
+              Reg.CreateKey(key);
+              reg.OpenKey (key, True);
+          end
+        else
+          begin
+            Application.MessageBox(PChar('Registro inexistente. Foi criado um novo registro com o diretório padrão: '+ diretorioPadrao),'Aviso',MB_OK+MB_ICONWARNING);
+            reg.OpenKey(key,true);
+            Reg.DeleteKey('DiretorioERP');
+          end;
+       result:=corrigeCaracter(Reg.readstring('DiretorioERP'));
+      finally
+         Reg.CloseKey;
+      end;
+    end;
+
+procedure TfrmConfigurarINI.btnConfigurarClick(Sender: TObject);
+    begin
+      cadastrar();
+      carregar();
+    end;
+
+procedure TfrmConfigurarINI.btnFecharClick(Sender: TObject);
+    begin
+      close;
+    end;
+
+procedure TfrmConfigurarINI.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+    begin
+      if Key = vk_return then
+        cadastrar();
+      if key = vk_escape then
+        close();
+    end;
+
+procedure TfrmConfigurarINI.cbSecoesChange(Sender: TObject);
+    var
+        arquivo: TIniFile;
+        parametro: string;
+    begin
+        try
+          arquivo:= TIniFile.Create(lerRegistro + 'erp.ini');
+          parametro:= cbSecoes.Items[cbSecoes.ItemIndex];
+          edtConexao.Text:= parametro;
+          edtservidor.text:= Arquivo.ReadString(parametro,'Server name','');
+          edtBase.text:= Arquivo.ReadString(parametro,'Database name','');
+        finally
+          arquivo.Free;
+        end;
+    end;
+
+procedure TfrmConfigurarINI.btnEditarClick(Sender: TObject);
+    var
+      Arquivoini:TIniFile;
+      Lista: TStringList;
+    begin
+      cbSecoes.Visible:= True;
+      carregar();
+    end;
+
+procedure TfrmConfigurarINI.img1MouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+    begin
+      ReleaseCapture;
+      PostMessage (frmConfigurarINI.Handle, WM_SYSCOMMAND, $F012, 0) ;
+    end;
+procedure TfrmConfigurarINI.btn1Click(Sender: TObject);
+  var
+      Tela: TfrmSelecionaDiretorio;
+  begin
+    try
+      Tela := TfrmSelecionaDiretorio.Create(Self);
+      tela.ShowModal;
+    finally
+      FreeAndNil(tela);
+    end;
+    carregar();
+  end;
+
+end.

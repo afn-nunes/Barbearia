@@ -1,0 +1,35 @@
+unit CadastroProdutos;
+
+interface
+type
+  TProduto = class
+    private
+      fTpProduto: string;
+    protected
+      function getTpProduto: string;
+      procedure setTpProduto(const Value: string);
+    public
+      property tpProduto:string read getTpProduto write setTpProduto;
+
+      //descricao
+      //observacaoo
+      //valorCusto
+      //valorVenda
+      //Fornecedor
+      //Caracteristica
+  end;
+implementation
+
+{ TProduto }
+
+function TProduto.getTpProduto: string;
+begin
+   result:= ftpProduto;
+end;
+
+procedure TProduto.setTpProduto(const Value: string);
+begin
+   fTpProduto:= value;
+end;
+
+end.

@@ -1,0 +1,101 @@
+object dmConexao: TdmConexao
+  OldCreateOrder = False
+  Height = 280
+  Width = 459
+  object conexao: TUniConnection
+    ProviderName = 'PostgreSQL'
+    Port = 5432
+    Database = 'postgres'
+    Username = 'postgres'
+    Server = 'localhost'
+    Connected = True
+    LoginPrompt = False
+    Left = 40
+    Top = 24
+    EncryptedPassword = 'CEFFCDFFCCFFCBFFCAFFC9FF'
+  end
+  object PostgreSQLUniProvider1: TPostgreSQLUniProvider
+    Left = 360
+    Top = 24
+  end
+  object cdsPessoa: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspPessoa'
+    Left = 32
+    Top = 88
+    object cdsPessoaidPessoa: TIntegerField
+      FieldName = 'idPessoa'
+      Visible = False
+    end
+    object cdsPessoanomePessoa: TStringField
+      DisplayLabel = 'Nome'
+      DisplayWidth = 40
+      FieldName = 'nomePessoa'
+      Required = True
+      Size = 50
+    end
+    object cdsPessoatelefone: TStringField
+      DisplayLabel = 'Telefone'
+      FieldName = 'telefone'
+      Size = 15
+    end
+    object cdsPessoaemail: TStringField
+      DisplayLabel = 'E-mail'
+      FieldName = 'email'
+    end
+    object cdsPessoacaracteristica: TStringField
+      DisplayLabel = 'Caracter'#237'stica'
+      DisplayWidth = 15
+      FieldName = 'caracteristica'
+      Size = 10
+    end
+    object cdsPessoatipoProduto: TStringField
+      DisplayWidth = 15
+      FieldName = 'tipoProduto'
+      Size = 10
+    end
+    object cdsPessoaaniversario: TDateField
+      FieldName = 'aniversario'
+    end
+  end
+  object dspPessoa: TDataSetProvider
+    DataSet = qryPessoa
+    Left = 96
+    Top = 88
+  end
+  object qryPessoa: TUniQuery
+    Connection = conexao
+    SQL.Strings = (
+      'Select * from public."Pessoa"')
+    Left = 152
+    Top = 88
+    object qryPessoaidPessoa: TIntegerField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'idPessoa'
+    end
+    object qryPessoanomePessoa: TStringField
+      FieldName = 'nomePessoa'
+      Required = True
+      Size = 50
+    end
+    object qryPessoatelefone: TStringField
+      FieldName = 'telefone'
+    end
+    object qryPessoaemail: TStringField
+      FieldName = 'email'
+    end
+    object qryPessoacaracteristica: TStringField
+      FieldName = 'caracteristica'
+      Size = 10
+    end
+    object qryPessoatipoProduto: TStringField
+      FieldName = 'tipoProduto'
+      Size = 10
+    end
+    object qryPessoaaniversario: TDateField
+      FieldName = 'aniversario'
+    end
+  end
+end

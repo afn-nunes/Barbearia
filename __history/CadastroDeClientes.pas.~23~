@@ -1,0 +1,107 @@
+unit CadastroDeClientes;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids,
+  Vcl.Buttons, Vcl.ComCtrls, System.Actions, Vcl.ActnList, Vcl.ImgList,
+  Vcl.ExtCtrls, Data.DB,dbclient, tpEdit;
+
+type
+  TfrmCadastroPessoa = class(TForm)
+    Panel1: TPanel;
+    ImageList1: TImageList;
+    ActAcoes: TActionList;
+    StatusBar1: TStatusBar;
+    btnEditar: TSpeedButton;
+    btnExcluir: TSpeedButton;
+    btnSalvar: TSpeedButton;
+    btnCancelar: TSpeedButton;
+    btnPesquisar: TSpeedButton;
+    btnImprimir: TSpeedButton;
+    btnFechar: TSpeedButton;
+    actInserir: TAction;
+    ActEditar: TAction;
+    ActExcluir: TAction;
+    ActSalvar: TAction;
+    ActCancelar: TAction;
+    ActPesquisar: TAction;
+    ActImprimir: TAction;
+    ActFechar: TAction;
+    dsClientes: TDataSource;
+    edtTelefone: TEdit;
+    EditdtNascimento: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    edtNome: TEdit;
+    DBGrid1: TDBGrid;
+    DataSource1: TDataSource;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    procedure actInserirExecute(Sender: TObject);
+    procedure ActEditarExecute(Sender: TObject);
+    procedure ActExcluirExecute(Sender: TObject);
+    procedure ActCancelarExecute(Sender: TObject);
+    procedure ActPesquisarExecute(Sender: TObject);
+    procedure ActImprimirExecute(Sender: TObject);
+    procedure ActFecharExecute(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadastroPessoa: TfrmCadastroPessoa;
+
+implementation
+
+uses
+  modConexao;
+
+{$R *.dfm}
+
+//uses modConexao, Ufuncoes;
+
+procedure TfrmCadastroPessoa.ActCancelarExecute(Sender: TObject);
+begin
+//
+end;
+
+procedure TfrmCadastroPessoa.ActEditarExecute(Sender: TObject);
+begin
+//
+end;
+
+procedure TfrmCadastroPessoa.ActExcluirExecute(Sender: TObject);
+begin
+//
+end;
+
+procedure TfrmCadastroPessoa.ActFecharExecute(Sender: TObject);
+begin
+//
+end;
+
+procedure TfrmCadastroPessoa.ActImprimirExecute(Sender: TObject);
+begin
+//
+end;
+
+procedure TfrmCadastroPessoa.actInserirExecute(Sender: TObject);
+begin
+//
+end;
+
+procedure TfrmCadastroPessoa.ActPesquisarExecute(Sender: TObject);
+begin
+//
+end;
+
+end.

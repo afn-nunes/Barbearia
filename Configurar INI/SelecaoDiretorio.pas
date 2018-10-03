@@ -1,0 +1,104 @@
+unit SelecaoDiretorio;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls,FileCtrl,Registry;
+
+type
+  TfrmSelecionaDiretorio = class(TForm)
+    edtDiretorio: TEdit;
+    btnSalvar: TButton;
+    lbl1: TLabel;
+    Procurar: TButton;
+    procedure FormMouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Integer);
+    procedure FormKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure ProcurarClick(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    function SelectADirectory(Title : string) : string;
+    { Public declarations }
+  end;
+
+var
+  frmSelecionaDiretorio: TfrmSelecionaDiretorio;
+
+implementation
+
+uses ConfigurarIni;
+
+{$R *.dfm}
+
+procedure TfrmSelecionaDiretorio.FormMouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+begin
+      ReleaseCapture;
+      PostMessage (frmConfigurarINI.Handle, WM_SYSCOMMAND, $F012, 0) ;
+end;
+
+procedure TfrmSelecionaDiretorio.FormCreate(Sender: TObject);
+Var
+    Reg : TRegistry;
+    key: string;
+begin
+    reg:= TRegistry.Create();
+    key:= 'Software\Marshall';
+    reg.OpenKey(key,true);
+    edtDiretorio.Text:= Reg.ReadString('DiretorioPadrao');
+end;
+
+procedure TfrmSelecionaDiretorio.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+   if Key= vk_escape then
+        Close;
+end;
+
+function TfrmSelecionaDiretorio.SelectADirectory(Title : string) : string;
+var
+  Pasta : String;
+begin
+  SelectDirectory(Title, '', Pasta);
+   if (Trim(Pasta) <> '') then
+    if (Pasta[Length(Pasta)] <> '\') then
+      Pasta := Pasta + '\';
+   Result := Pasta;
+end;
+
+procedure TfrmSelecionaDiretorio.ProcurarClick(Sender: TObject);
+begin
+edtDiretorio.text:= SelectADirectory('Selecione o diretório: ');
+btnSalvar.Enabled:= True;
+end;
+
+procedure TfrmSelecionaDiretorio.btnSalvarClick(Sender: TObject);
+    Var
+      Reg : TRegistry;
+      key: string;
+    Begin
+      if DirectoryExists(edtDiretorio.text) then
+        try
+          key:= 'Software\Marshall';
+          Reg := TRegistry.Create;
+          Reg.rootkey:=HKEY_CURRENT_USER;
+          reg.OpenKey(key,true);
+          Reg.WriteString('DiretorioPadrao', edtDiretorio.Text);
+          Application.MessageBox('Registro atualizado com Sucesso','Aviso',MB_OK);
+          reg.free;
+          close;
+          except on E: Exception  do
+            raise Exception.Create('Falha na alterdatação do diretório. Verifique se o endereço existe, e se há permissão de acesso a chave de registro');
+        end
+      else
+        begin
+          Application.MessageBox('O diretório informado é inválido, Verifique','Aviso',MB_OK+MB_ICONEXCLAMATION);
+          Exit;
+        end;
+    end;
+end.

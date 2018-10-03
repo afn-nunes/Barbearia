@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2017/07/16 20:26:26.000.262,=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2017/12/16 15:36:39.000.856,=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2017/12/24 13:03:00.000.707,=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2018/02/04 12:16:09.000.395,=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2018/02/04 12:17:50.000.512,=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2018/02/14 09:06:48.000.880,=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2018/04/21 22:00:08.000.187,=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2018/04/21 22:01:03.000.590,=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\UfrmCadastroClientes.pas</Transaction>
+    <Transaction>2018/04/21 22:02:31.000.599,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\CadastroClientes.dfm=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Unit3.dfm</Transaction>
+    <Transaction>2018/04/21 22:02:31.000.599,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\CadastroClientes.pas=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2018/04/21 22:02:43.000.928,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\Marshall.dproj=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Project3.dproj</Transaction>
+    <Transaction>2018/04/21 22:04:34.000.593,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\CadastroDeClientes.pas=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\UfrmCadastroClientes.pas</Transaction>
+    <Transaction>2018/04/21 22:04:34.000.593,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\CadastroDeClientes.dfm=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\UfrmCadastroClientes.dfm</Transaction>
+    <Transaction>2018/04/23 21:30:46.000.995,=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\Unit1.pas</Transaction>
+    <Transaction>2018/04/23 21:32:28.000.585,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\Units\CadastroProdutos.pas=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\Unit1.pas</Transaction>
+    <Transaction>2018/04/28 18:45:44.000.291,=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\Unit1.pas</Transaction>
+    <Transaction>2018/04/28 19:03:03.000.753,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\Unit1.pas=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\Units\CadastroPessoas.pas</Transaction>
+    <Transaction>2018/04/29 11:23:15.000.579,=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\Unit1.pas</Transaction>
+    <Transaction>2018/04/29 11:24:08.000.153,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\Unit1.dfm=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\Conexao\dmConexao.dfm</Transaction>
+    <Transaction>2018/04/29 11:24:08.000.153,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\Unit1.pas=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\Conexao\dmConexao.pas</Transaction>
+    <Transaction>2018/05/14 18:54:22.000.895,=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\Configurar INI\ConfigurarIni.pas</Transaction>
+    <Transaction>2018/05/14 18:54:40.000.468,=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\Configurar INI\SelecaoDiretorio.pas</Transaction>
+    <Transaction>2018/05/14 19:03:35.000.783,=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\Login.pas</Transaction>
+    <Transaction>2018/05/20 19:19:44.000.771,=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\Unit1.pas</Transaction>
+    <Transaction>2018/05/20 19:30:08.000.548,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\Unit1.pas=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\principal.pas</Transaction>
+    <Transaction>2018/05/20 19:30:08.000.548,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\Unit1.dfm=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\principal.dfm</Transaction>
+    <Transaction>2018/05/22 20:51:05.000.228,=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\Unit1.pas</Transaction>
+    <Transaction>2018/05/22 20:51:37.000.818,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\Clientes.pas=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\Unit1.pas</Transaction>
+    <Transaction>2018/05/22 20:51:37.000.819,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\Clientes.dfm=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\Unit1.dfm</Transaction>
+    <Transaction>2018/06/03 07:14:39.000.544,=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\Units\fAgenda.pas</Transaction>
+    <Transaction>2018/06/05 07:24:03.000.303,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\Pessoa.pas=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\Clientes.pas</Transaction>
+    <Transaction>2018/06/05 07:24:03.000.303,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\Pessoa.dfm=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\Clientes.dfm</Transaction>
+    <Transaction>2018/06/28 19:23:33.000.258,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\Conexao\dmConexao.dfm=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\Conexao\modConexao.dfm</Transaction>
+    <Transaction>2018/06/28 19:23:33.000.258,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\Conexao\dmConexao.pas=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\Conexao\modConexao.pas</Transaction>
+    <Transaction>2018/06/28 19:35:02.000.034,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\Units\fAgenda.pas=</Transaction>
+    <Transaction>2018/06/28 19:36:00.000.406,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\Pessoa.pas=</Transaction>
+    <Transaction>2018/06/28 19:38:44.000.787,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\principal.dfm=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\principal.dfm</Transaction>
+    <Transaction>2018/06/28 19:38:44.000.787,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\principal.pas=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\principal.pas</Transaction>
+    <Transaction>2018/06/28 19:41:37.000.107,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\principal.dfm=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\Inicial.dfm</Transaction>
+    <Transaction>2018/06/28 19:41:37.000.107,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\principal.pas=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\Inicial.pas</Transaction>
+    <Transaction>2018/06/28 19:42:26.000.694,C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\BomRetiro\View\Marshall.dproj=C:\Users\DEGIMANU\Documents\Embarcadero\Studio\Projects\Marshall\Marshall.dproj</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="Conexao"/>
+    <File Path="Conexao\modConexao.pas"/>
+    <File Path="Conexao\modConexao.dfm"/>
+    <File Path="Configurar INI"/>
+    <File Path="Configurar INI\ConfigurarIni.pas"/>
+    <File Path="Configurar INI\ConfigurarIni.dfm"/>
+    <File Path="Configurar INI\SelecaoDiretorio.pas"/>
+    <File Path="Configurar INI\SelecaoDiretorio.dfm"/>
+    <File Path="Units"/>
+    <File Path="Units\CadastroProdutos.pas"/>
+    <File Path="Units\CadastroPessoas.pas"/>
+    <File Path="CadastroDeClientes.pas"/>
+    <File Path="CadastroDeClientes.dfm"/>
+    <File Path="Login.pas"/>
+    <File Path="Login.dfm"/>
+    <File Path="Inicial.pas"/>
+    <File Path="Inicial.dfm"/>
+  </ProjectSortOrder>
+</BorlandProject>

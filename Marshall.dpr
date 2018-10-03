@@ -1,0 +1,25 @@
+program Marshall;
+
+uses
+  Vcl.Forms,
+  CadastroDeClientes in 'CadastroDeClientes.pas' {frmCadastroPessoa},
+  CadastroProdutos in 'Units\CadastroProdutos.pas',
+  CadastroPessoas in 'Units\CadastroPessoas.pas',
+  Vcl.Themes,
+  Vcl.Styles,
+  modConexao in 'Conexao\modConexao.pas' {dmConexao: TDataModule},
+  ConfigurarIni in 'Configurar INI\ConfigurarIni.pas' {frmConfigurarINI},
+  SelecaoDiretorio in 'Configurar INI\SelecaoDiretorio.pas' {frmSelecionaDiretorio},
+  Login in 'Login.pas' {frmLogin},
+  Inicial in 'Inicial.pas' {frmPrincipal};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TdmConexao, dmConexao);
+  Application.CreateForm(TfrmCadastroPessoa, frmCadastroPessoa);
+  Application.CreateForm(TfrmLogin, frmLogin);
+  Application.Run;
+end.

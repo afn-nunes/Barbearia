@@ -1,0 +1,22 @@
+object DataModule1: TDataModule1
+  OldCreateOrder = False
+  Height = 280
+  Width = 459
+  object UniConnection1: TUniConnection
+    ProviderName = 'PostgreSQL'
+    Port = 5432
+    Database = 'marshall'
+    Username = 'postgres'
+    Server = 'localhost'
+    Connected = True
+    Left = 40
+    Top = 24
+    EncryptedPassword = 'CEFFCDFFCCFFCBFFCAFFC9FF'
+  end
+  object UniTable1: TUniTable
+    TableName = '"Pessoa"'
+    Connection = UniConnection1
+    Left = 128
+    Top = 24
+  end
+end

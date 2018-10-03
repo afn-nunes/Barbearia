@@ -1,0 +1,100 @@
+unit CadastroPessoas;
+
+interface
+type
+  tFornecedor = class
+    private
+      fCodigo : string;
+      fNome : string;
+      fTelefone : string;
+      fEmail: string;
+      fCaracteristica : string;
+      fTpProduto : string;
+      fAniversario : TDateTime;
+    protected
+      function GetCaracteristica: string;
+      function GetEmail: string;
+      function GetNome: string;
+      function GetTelefone: string;
+      function GetAniversário: TDateTime;
+      function GetCodigo: string;
+      procedure setCodigo(const Value: string);
+      procedure setAniversário(const Value: TDateTime);
+      procedure setCaracteristica(const Value: string);
+      procedure setEmail(const Value: string);
+      procedure setNome(const Value: string);
+      procedure setTelefone(const Value: string);
+    public
+      property codigo: string read GetCodigo write setCodigo;
+      property nome :string read GetNome write setNome;
+      property telefone : string read GetTelefone write setTelefone;
+      property email: string read GetEmail write setEmail;
+      property caracteristica : string read GetCaracteristica write setCaracteristica;
+      property tpProduto : string read GetCaracteristica write setCaracteristica;
+      property aniversário : TDateTime read GetAniversário write setAniversário;
+  end;
+implementation
+
+{ tFornecedor }
+
+function tFornecedor.GetAniversário: TDateTime;
+begin
+  Result:= fAniversario;
+end;
+
+function tFornecedor.GetCaracteristica: string;
+begin
+  result:= fCaracteristica;
+end;
+
+function tFornecedor.GetCodigo: string;
+begin
+  result:= fCodigo;
+end;
+
+function tFornecedor.GetEmail: string;
+begin
+  result:= fEmail;
+end;
+
+function tFornecedor.GetNome: string;
+begin
+  result:= fNome;
+end;
+
+function tFornecedor.GetTelefone: string;
+begin
+ result:= fTelefone;
+end;
+
+procedure tFornecedor.setAniversário(const Value: TDateTime);
+begin
+  fAniversario:= Value;
+end;
+
+procedure tFornecedor.setCaracteristica(const Value: string);
+begin
+  fCaracteristica:= Value;
+end;
+
+procedure tFornecedor.setCodigo(const Value: string);
+begin
+  fCodigo:= Value;
+end;
+
+procedure tFornecedor.setEmail(const Value: string);
+begin
+  fEmail:= Value;
+end;
+
+procedure tFornecedor.setNome(const Value: string);
+begin
+  fNome:= Value;
+end;
+
+procedure tFornecedor.setTelefone(const Value: string);
+begin
+  fTelefone:= Value;
+end;
+
+end.

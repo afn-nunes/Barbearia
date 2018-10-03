@@ -1,0 +1,65 @@
+object dmConexao: TdmConexao
+  OldCreateOrder = False
+  Height = 280
+  Width = 459
+  object conexao: TUniConnection
+    ProviderName = 'PostgreSQL'
+    Port = 5432
+    Database = 'postgres'
+    Username = 'postgres'
+    Server = 'localhost'
+    Connected = True
+    LoginPrompt = False
+    Left = 40
+    Top = 24
+    EncryptedPassword = 'CEFFCDFFCCFFCBFFCAFFC9FF'
+  end
+  object PostgreSQLUniProvider1: TPostgreSQLUniProvider
+    Left = 360
+    Top = 24
+  end
+  object cdsPessoa: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspPessoa'
+    Left = 32
+    Top = 88
+  end
+  object dspPessoa: TDataSetProvider
+    DataSet = qryPessoa
+    Left = 96
+    Top = 88
+  end
+  object qryPessoa: TUniQuery
+    Connection = conexao
+    SQL.Strings = (
+      'Select * from public."Pessoa"')
+    Left = 152
+    Top = 88
+    object qryPessoaidPessoa: TIntegerField
+      FieldName = 'idPessoa'
+    end
+    object qryPessoanomePessoa: TStringField
+      FieldName = 'nomePessoa'
+      Required = True
+      Size = 50
+    end
+    object qryPessoatelefone: TStringField
+      FieldName = 'telefone'
+    end
+    object qryPessoaemail: TStringField
+      FieldName = 'email'
+    end
+    object qryPessoacaracteristica: TStringField
+      FieldName = 'caracteristica'
+      Size = 10
+    end
+    object qryPessoatipoProduto: TStringField
+      FieldName = 'tipoProduto'
+      Size = 10
+    end
+    object qryPessoaaniversario: TDateField
+      FieldName = 'aniversario'
+    end
+  end
+end

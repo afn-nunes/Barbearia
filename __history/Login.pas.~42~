@@ -1,0 +1,228 @@
+unit Login;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.jpeg, Vcl.ExtCtrls,
+  Vcl.StdCtrls, Vcl.Buttons,System.IniFiles,System.Win.Registry;
+
+type
+  TfrmLogin = class(TForm)
+    Image1: TImage;
+    edtUsuario: TEdit;
+    edtSenha: TEdit;
+    btnConectar: TButton;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    cbConexoes: TComboBox;
+    btnFechar: TSpeedButton;
+    procedure Image1MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure btnFecharClick(Sender: TObject);
+    procedure btnConectarClick(Sender: TObject);
+    procedure cbConexoesClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+    procedure Conectar(usuario:string;senha:Integer;conexao:string);
+    function lerRegistro: string;
+
+    procedure criarRegistro;
+    function corrigeCaracter(Diretorio: string): string;
+    procedure carregar;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmLogin: TfrmLogin;
+
+implementation
+
+uses
+  dmConexao, ConfigurarIni, principal;
+
+{$R *.dfm}
+
+procedure TfrmLogin.btnConectarClick(Sender: TObject);
+var
+  usuario,senha,conexao: string;
+  principal: TfrmPrincipal;
+begin
+  if edtUsuario.Text <> '' then
+    usuario:= edtUsuario.Text
+  else
+    begin
+      MessageDlg('Preencha o campo usuário',mtInformation,[mbOK],0);
+      edtUsuario.SetFocus;
+      Abort;
+    end;
+  if edtSenha.Text <> '' then
+    usuario:= edtUsuario.Text
+  else
+    begin
+      MessageDlg('Preencha o campo senha',mtInformation,[mbOK],0);
+      edtSenha.SetFocus;
+      Abort;
+    end;
+  if cbConexoes.ItemIndex > 0 then
+     conexao:= LowerCase(cbConexoes.Items[cbConexoes.ItemIndex])
+  else
+     begin
+       MessageDlg('Selecione uma conexão!',mtInformation,[mbOK],0);
+       cbConexoes.SetFocus;
+       Abort;
+     end;
+
+  try
+    Conectar(edtUsuario.Text,StrToInt(edtSenha.Text),conexao);
+  except on e : exception do
+    begin
+     showmessage('Ocorreu o seguinte erro na conexão: '+ e.message);
+     Abort;
+    end;
+  end;
+    try
+      principal:= TfrmPrincipal.Create(self);
+      principal.ShowModal;
+    except
+      FreeAndNil(principal);
+    end;
+end;
+
+procedure TfrmLogin.btnFecharClick(Sender: TObject);
+begin
+  Close();
+end;
+
+procedure TfrmLogin.cbConexoesClick(Sender: TObject);
+begin
+  lerRegistro();
+end;
+
+procedure TfrmLogin.Conectar(usuario: string; senha: Integer; conexao: string);
+begin
+  dmConexao:= false;
+
+  dmConexao.FDPhysPgDriverLink1.VendorHome:= ExtractFilePath(Application.ExeName) + 'pgbin32\';
+  dmConexao.FDPhysPgDriverLink1.VendorLib:= 'libpq.dll';
+  dmConexao.FDPhysPgDriverLink1.Release;
+
+  dmConexao.conexao.Params.Values['servername']:= 'localhost';
+  dmConexao.conexao.Params.Values['database']:= conexao;
+  dmConexao.conexao.Params.Values['user_name']:= usuario;
+  dmConexao.conexao.Params.Values['password']:= IntToStr(senha);
+  dmConexao.conexao.Params.Values['port']:= '5432';
+  dmConexao.conexao.Connected:= True;
+
+    OldCreateOrder = False
+  Height = 280
+  Width = 459
+  object UniConnection1: TUniConnection
+    ProviderName = 'PostgreSQL'
+    Port = 5432
+    Database = 'marshall'
+    Username = 'postgres'
+    Server = 'localhost'
+    LoginPrompt = False
+    Left = 40
+    Top = 24
+    EncryptedPassword = 'CEFFCDFFCCFFCBFFCAFFC9FF'
+  end
+  object PostgreSQLUniProvider1: TPostgreSQLUniProvider
+    Left = 360
+    Top = 24
+  end
+end;
+
+procedure TfrmLogin.Image1MouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+const
+   sc_DragMove = $f012;
+begin
+  ReleaseCapture;
+  Perform(wm_SysCommand, sc_DragMove, 0);
+end;
+
+function TfrmLogin.lerRegistro;
+Var
+  Reg : TRegistry;
+  key,diretorioPadrao: string;
+  tela: TfrmConfigurarINI;
+Begin
+  key:= 'Software\Marshall';
+  diretorioPadrao:= ExtractFilePath(Application.ExeName);
+  Reg := TRegistry.Create;
+  Reg.rootkey:=HKEY_CURRENT_USER;
+  try
+    if Reg.KeyExists(key) then
+      begin
+        Reg.CreateKey(key);
+        reg.OpenKey (key, True);
+        diretorioPadrao:= Reg.ReadString('DiretorioPadrao');
+      end
+    else
+      begin
+        if Application.MessageBox(PChar('Não existe uma conexão configurada! Clique em ok, para criar uma nova conexão'+
+          diretorioPadrao),'Aviso',MB_OK+MB_OKCANCEL) = MB_OK then
+          begin
+             try
+              Tela := frmConfigurarINI.Create(Self);
+              tela.ShowModal;
+             finally
+              FreeAndNil(tela);
+             end;
+          end;
+        reg.OpenKey(key,true);
+        Reg.DeleteKey('DiretorioPadrao');
+      end;
+  finally
+     Reg.CloseKey;
+  end;
+  result:= diretorioPadrao;
+end;
+
+procedure TfrmLogin.criarRegistro;
+var
+  Reg: TRegistry;
+begin
+  try
+    Reg := TRegistry.Create;
+    Reg.rootkey:=HKEY_CURRENT_USER;
+    reg.OpenKey('Software\Marshall',true);
+    if DirectoryExists(ExtractFilePath(Application.ExeName)) then
+      Reg.WriteString('DiretorioPadrao', ExtractFilePath(Application.ExeName));
+  finally
+      reg.free;
+  end;
+end;
+procedure TfrmLogin.FormShow(Sender: TObject);
+begin
+  carregar();
+end;
+
+function TfrmLogin.corrigeCaracter(Diretorio:string):string;
+begin
+        result:= diretorio;
+        if Copy(result,length(result),1) <> '\' then
+                result:= Diretorio + '\';
+end;
+procedure TfrmLogin.carregar();
+var
+  arquivoIni: TIniFile;
+  lista: TStringList;
+begin
+  cbConexoes.Clear;
+  try
+    Arquivoini:= TIniFile.Create(lerRegistro()+'Marshall.ini');
+    lista:= TStringList.Create;
+    Arquivoini.ReadSections(lista);
+    cbConexoes.Items:= Lista;
+  finally
+    Arquivoini.Free;
+    Lista.Free;
+  end;
+end;
+end.

@@ -1,0 +1,100 @@
+unit CadastroPessoas;
+
+interface
+type
+  tPessoa = class
+    private
+      FCodigo : string;
+      FNome : string;
+      FTelefone : string;
+      FEmail: string;
+      FCaracteristica : string;
+      FTpProduto : string;
+      FDataNascimento : TDateTime;
+    protected
+      function GetCaracteristica: string;
+      function GetEmail: string;
+      function GetNome: string;
+      function GetTelefone: string;
+      function GetAniversário: TDateTime;
+      function GetCodigo: string;
+      procedure setCodigo(const Value: string);
+      procedure setAniversário(const Value: TDateTime);
+      procedure setCaracteristica(const Value: string);
+      procedure setEmail(const Value: string);
+      procedure setNome(const Value: string);
+      procedure setTelefone(const Value: string);
+    public
+      property codigo: string read GetCodigo write setCodigo;
+      property nome :string read GetNome write setNome;
+      property telefone : string read GetTelefone write setTelefone;
+      property email: string read GetEmail write setEmail;
+      property caracteristica : string read GetCaracteristica write setCaracteristica;
+      property tpProduto : string read GetCaracteristica write setCaracteristica;
+      property DataNascimento : TDateTime read GetDataNascimento write setDataNascimento;
+  end;
+implementation
+
+{ tPessoa }
+
+function tPessoa.GetDataNascimento: TDateTime;
+begin
+  Result:= FDataNascimento;
+end;
+
+function tPessoa.GetCaracteristica: string;
+begin
+  result:= fCaracteristica;
+end;
+
+function tPessoa.GetCodigo: string;
+begin
+  result:= fCodigo;
+end;
+
+function tPessoa.GetEmail: string;
+begin
+  result:= fEmail;
+end;
+
+function tPessoa.GetNome: string;
+begin
+  result:= fNome;
+end;
+
+function tPessoa.GetTelefone: string;
+begin
+ result:= fTelefone;
+end;
+
+procedure tPessoa.setDataNascimento(const Value: TDateTime);
+begin
+  FDataNascimento:= Value;
+end;
+
+procedure tPessoa.setCaracteristica(const Value: string);
+begin
+  fCaracteristica:= Value;
+end;
+
+procedure tPessoa.setCodigo(const Value: string);
+begin
+  fCodigo:= Value;
+end;
+
+procedure tPessoa.setEmail(const Value: string);
+begin
+  fEmail:= Value;
+end;
+
+procedure tPessoa.setNome(const Value: string);
+begin
+  fNome:= Value;
+end;
+
+procedure tPessoa.setTelefone(const Value: string);
+begin
+  fTelefone:= Value;
+end;
+
+end.
